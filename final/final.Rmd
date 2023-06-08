@@ -50,25 +50,21 @@ Overall, the results of these studies support the importance of a healthy lifest
 
 
 # Data
-In this section, discuss the source of the data set you use in your study, if you have done any operation on the raw data, these operations and the summary statistics about the data set. In this section, it is mandatory to have a table (Table \ref{tab:summary}) containing summary statistics (mean, standard deviation, minimum, maximum, etc. values) of all variables. Make the necessary references to your tables as shown in the previous sentence [@perkins:1991].
+The dataset used in this study is the UCI Heart Disease Dataset, a publicly available dataset that has 303 observations and 14 variables, curated specifically for heart disease researchs. The dataset consists of comprehensive clinical and demographic information on patients suspected of having heart disease.
+Before conducting the analysis, a number of operations were performed on the raw data. First, a thorough examination of the dataset was carried out to ensure data quality and integrity. It was found that a subset of five observations had insufficient data, making them unsuitable for analysis. These observations were therefore excluded from the dataset.
+Summary statistics were calculated to provide an overview of the dataset. Descriptive statistics, including measures such as mean, median, standard deviation and range, were calculated for relevant variables associated with lifestyle determinants, heart disease indicators and other relevant covariables. These summary statistics give an indication of the central tendencies, variability and distributions of the data set, aiding subsequent analysis and interpretation of the results.
 
-R codes for the analysis should start in this section. In this section, you should include the codes that imports the data set into R and the codes that generate summary statistics.
-
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
 library(here)
 survey <- read_csv(here("data/heartdatas.csv"))
 ```
-
-Note that code options are edited in some of the code chunks in the Rmd file.
 
 ```{r, echo=FALSE}
 library(xtable) 
 library(summarytools)
 st_options(lang = "en")
 ```
-
-With the `echo=FALSE` option, prevent the codes from appearing in the derived pdf file and report your results in tables.
 
 ```{r results='asis', echo=FALSE}
 survey %>%
