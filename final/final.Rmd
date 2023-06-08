@@ -1,7 +1,7 @@
 ---
-title: "Title"
+title: "Exploring the Impact of Lifestyle Factors on the Development and Progression of Heart Disease"
 author: 
-  - Last Name, First Name[^1]
+  - ALBAYRAK, Melike Gülşen[^1]
 bibliography: ../bibliography/biblio.bib
 csl: ../csl/apa.csl
 header-includes:
@@ -25,7 +25,7 @@ urlcolor: blue
 fontsize: 12pt
 biblio-style: apalike
 abstract: |
-    Write your abstract here.
+    This project aims to study the impact of lifestyle factors, including smoking, physical activity, diet and alcohol drinking, on the onset and progression of heart disease. The study be based on the UCI Heart Disease Dataset, which contains comprehensive clinical and demographic information on patients with suspected heart disease. Data analysis and statistical methods will be used to explore the associations between lifestyle habits and heart disease outcomes in the parts of "Data" and " Methods and Data Analysis". The project seeks to provide valuable insights into how these daily factors that influence the risk and pathway of heart diseases. The findings will contribute to the existing body of knowledge on cardiovascular health and inform the development of targeted interventions . By better understanding the role of lifestyle factors in heart disease, this research aims to improve cardiovascular health outcomes and reduce the overall heart diseases at a population level.
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
@@ -34,24 +34,13 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FAL
 <!-- ======================================================================= -->
 <!-- ============================== FOOTNOTES ============================== -->
 <!-- ======================================================================= -->
-[^1]: Student ID, [Github Repo](https://github.com/YOUR_USER_NAME_HERE/YOUR_REPO_NAME_HERE)
+[^1]: 21080562, [Github Repo](https://github.com/melikegulsenalbayrak/Final)
 
-# Important Information About Midterm
-
-\colorbox{BurntOrange}{WRITE YOUR GITHUB REPO LINK ON LINE 37 IN THIS FILE!}
-
-**Project Proposal submisson will be done by uploading a zip file to the ekampus system along with the Github repo link. If you do not upload a zip file to the system and do not provide a Github repo link, you will be deemed not to have entered the midterm and final exams.**
-
-**You must upload your project folder (`YourStudentID.zip` file) to *ekampus.ankara.edu.tr* until 9 June 2023, 23:59.**
-
-\colorbox{WildStrawberry}{Read the README.md file in the project folder for more information.}
 
 # Introduction
-This outline has been created to assist you in writing your project assignment. You should cite all the sources you use, articles, presentations, projects, etc. Quoting and referencing gives readers the opportunity to access the resources you refer. **Even though you use your own words, if you are conveying the ideas of others in your work, you have to document the source of these ideas. Otherwise, you are committing academic plagiarism.** For example, you can refer to @aydinonat:2007 for academic writing rules. You can find lots of online resources on this topic.
+Heart disease remains a significant public health concern globally, accounting for a substantial burden of morbidity and mortality. Lifestyle factors, such as smoking, physical activity, diet, and alcohol consumption, have long been recognized as key modifiable risk factors that can significantly influence the development and progression of heart disease. Understanding the impact of these lifestyle factors on cardiovascular health is crucial for effective prevention and management strategies. The purpose of this project is to investigate the interplay between lifestyle factors and the presence or severity of heart diseases, using the Heart Disease Dataset from the UCI Machine Learning Repository which is a website that i found from my searchings about the most helpful dataset providers to find suitable datasets for researchs. After my investigations for finding a good dataset, I chose the Heart Disease Dataset that has 303 observations with a set of 14 clinical and demographic variables including categorical (sex, chest pain type (cp), fasting blood sugar > 120 mg/dl (fbs), resting electrocardiographic results (restecg), exercise induced angina (exang), slope of the peak exercise ST segment (slope), number of major vessels colored by fluoroscopy (ca), thalassemia (thal), target), discrete numeric (maximum heart rate achieved (thalach)) and continous numeric (age, resting blood pressure (trestbps, in mm Hg), serum cholesterol (chol, in mg/dl), ST depression induced by exercise relative to rest (oldpeak)) variables.
+After chosing the dataset, i pursued on looking for articles related to heart diseases and i saw that how specific lifestyle behaviours contribute to the risk and progression of cardiovascular heart problems. So at last, i designed my question as "What is the impact of lifestyle factors (such as smoking, physical activity, diet, and alcohol consumption) on the development and progression of heart disease?". Then, i just focused more specifically on the articles related to my research question for the project.
 
-The sections in your project assignment should definitely include the sections in this text. Apart from the sections used here, you can use different subsections. When writing your project, use this file as a draft and adapt its content to your purposes.
-
-In this section, mention the purpose and importance of your work in a few paragraphs.
 
 ## Literature Review
 
@@ -65,7 +54,7 @@ R codes for the analysis should start in this section. In this section, you shou
 ```{r}
 library(tidyverse)
 library(here)
-survey <- read_csv(here("data/survey.csv"))
+survey <- read_csv(here("data/heartdatas.csv"))
 ```
 
 Note that code options are edited in some of the code chunks in the Rmd file.
@@ -80,7 +69,7 @@ With the `echo=FALSE` option, prevent the codes from appearing in the derived pd
 
 ```{r results='asis', echo=FALSE}
 survey %>%
-  select("sex", "credits", "handedness", "height", "handspan") %>% 
+  select("age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "ca", "thal", "target") %>% 
   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
   xtable(caption = "Summary Statistics",
          label = "tab:summary",
@@ -94,29 +83,15 @@ In this section describe the methods that you use to achieve the purpose of the 
 
 For example, if you are performing regression analysis, discuss your predicted equation in this section. Write your equations and mathematical expressions using $LaTeX$.
 
-$$
-Y_t = \beta_0 + \beta_N N_t + \beta_P P_t + \beta_I I_t + \varepsilon_t
-$$
+
 
 This section should also include different tables and plots. You can add histograms, scatter plots (such as Figure \@ref(fig:plot)), box plots, etc. Make the necessary references to your figures as shown in the previous sentence.
 
-
-```{r plot, fig.align='center', fig.cap='An Awesome Plot'}
-survey %>% 
-  ggplot(aes(x = handedness, y = handspan)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_continuous("Handedness") + 
-  scale_y_continuous("Handspan")
-```
 
 
 # Conclusion
 Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
 
-**References section is created automatically by Rmarkdown. There is no need to change the references section in the draft file.**
-
-**_You shouldn't delete the last 3 lines. Those lines are required for References section._**
 
 \newpage
 # References {#references}
