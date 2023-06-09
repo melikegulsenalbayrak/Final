@@ -36,18 +36,14 @@ knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FAL
 <!-- ======================================================================= -->
 [^1]: 21080562, [Github Repo](https://github.com/melikegulsenalbayrak/Final)
 
-
 # Introduction
 Heart disease remains a significant public health concern globally, accounting for a substantial burden of morbidity and mortality. Lifestyle factors, such as smoking, physical activity, diet, and alcohol consumption, have long been recognized as key modifiable risk factors that can significantly influence the development and progression of heart disease. Understanding the impact of these lifestyle factors on cardiovascular health is crucial for effective prevention and management strategies. The purpose of this project is to investigate the interplay between lifestyle factors and the presence or severity of heart diseases, using the Heart Disease Dataset from the UCI Machine Learning Repository which is a website that i found from my searchings about the most helpful dataset providers to find suitable datasets for researchs. After my investigations for finding a good dataset, I chose the Heart Disease Dataset that has 303 observations with a set of 14 clinical and demographic variables including categorical (sex, chest pain type (cp), fasting blood sugar > 120 mg/dl (fbs), resting electrocardiographic results (restecg), exercise induced angina (exang), slope of the peak exercise ST segment (slope), number of major vessels colored by fluoroscopy (ca), thalassemia (thal), target), discrete numeric (maximum heart rate achieved (thalach)) and continous numeric (age, resting blood pressure (trestbps, in mm Hg), serum cholesterol (chol, in mg/dl), ST depression induced by exercise relative to rest (oldpeak)) variables.
 After chosing the dataset, i pursued on looking for articles related to heart diseases and i saw that how specific lifestyle behaviours contribute to the risk and progression of cardiovascular heart problems. So at last, i designed my question as "What is the impact of lifestyle factors (such as smoking, physical activity, diet, and alcohol consumption) on the development and progression of heart disease?". Then, i just focused more specifically on the articles related to my research question for the project.
 
-
 ## Literature Review
-
 The impact of lifestyle choices on the development and progression of heart disease has been the subject of numerous researchs. This literature review focuses on examining the findings from selected studies on smoking, physical activity, diet and alcohol consumption in association with cardiovascular health outcomes.
 One of the studies focused on the impact of smoking and smoking cessation on cardiovascular events and mortality in older adults. The results showed a clear connection between smoking and increased cardiovascular risk, while smoking cessation was associated with a reduced risk of cardiovascular events and mortality [@mons2015impact]. With regard to physical activity, @carnethon2009physical examined how much physical exercise is enough to benefit cardiovascular health. The evidence suggests that moderate-intensity aerobic activity of at least 150 minutes per week provides major cardiovascular benefits. The role of diet in the prevention of heart disease was undertaken by @bechthold2019food by the systematic research and dose-response meta-analysis  that focused on food groups and their association with coronary heart disease, stroke and heart failure. They found that higher intakes of fruits, vegetables, whole grains, and nuts were associated with a lower risk of these cardiovascular consequences. In relation to alcohol consumption, @larsson2020alcohol conducted a Mendelian randomisation study to investigate the link between alcohol consumption and cardiovascular disease. This report provides evidence of a causal relationship between higher alcohol consumption and increased risk of stroke and peripheral arterial disease. But the results also showed that genetically predicted alcohol consumption was not significantly associated with cardiovascular disease, suggesting that the associations observed in previous studies may be confounded by other factors.
 Overall, the results of these studies support the importance of a healthy lifestyle, including smoking cessation, regular physical activity, a balanced diet and moderate alcohol consumption, in the prevention and management of heart disease. Future research should continue to explore the long-term effects of lifestyle elements on heart disease, delve into the mechanisms underlying these relationships, and investigate strategies to promote behaviour change and maintain healthy lifestyle habits.
-
 
 # Data
 The dataset used in this study is the UCI Heart Disease Dataset, a publicly available dataset that has 303 observations and 14 variables, curated specifically for heart disease researchs. The dataset consists of comprehensive clinical and demographic information on patients suspected of having heart disease.
@@ -76,20 +72,33 @@ survey %>%
   print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
 ```
 
-
 # Methods and Data Analysis
-In this section describe the methods that you use to achieve the purpose of the study. You should use the appropriate analysis methods (such as hypothesis tests and correlation analysis) that we covered in the class. If you want, you can also use other methods that we haven't covered. If you think some method is more suitable for the purpose of the analysis and the data set, you can use that method [@newbold:2003; @verzani:2014; @wickham:2014; @wooldridge:2015a].
 
-For example, if you are performing regression analysis, discuss your predicted equation in this section. Write your equations and mathematical expressions using $LaTeX$.
+The figure 1 below, indicates that older individuals tend to have higher resting blood pressure, possibly due to age-related changes in blood vessels, lower levels of physical activity. Additionally, alcohol has been shown to increase blood pressure acutely, nad excessive alcohol consumption can lead to sustained elevations in blood pressure over time.
+```{r plot, echo=FALSE, fig.align='center', fig.cap='Age and Trestbps'}
+survey %>% 
+  ggplot(aes(x = age, y = trestbps)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_continuous("age") + 
+  scale_y_continuous("trestbps")
 
-
-
-This section should also include different tables and plots. You can add histograms, scatter plots (such as Figure \@ref(fig:plot)), box plots, etc. Make the necessary references to your figures as shown in the previous sentence.
-
-
+```
+The figure 2 below, suggests that individuals with heart disease (0 = no, 1, 2, 3, 4 = yes and the levels of it) tend to have higher fasting blood sugar levels, specifically represented as if the level is higher than 120 mg/dl, 1 = true; 0 = false, which can be attributed to factors such as smoking and poor diet with other determinants. Nicotine can increase blood sugar levels by stimulating the release of stress hormones, such as cortisol and epinephrine, which raise blood glucose levels. A diet high in refined carbohydrates, sugary beverages, and processed foods can contribute to higher blood sugar levels as well. These dietary choices can lead to insulin resistance, impaired glucose tolerance, and ultimately higher fasting blood sugar levels. 
+```{r, echo=FALSE, fig.align='center', fig.cap='Target and Fbs'} 
+survey %>% 
+  ggplot(aes(x = target, y = fbs)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_continuous("target") + 
+  scale_y_continuous("fbs") 
+```
 
 # Conclusion
-Summarize the results of your analysis in this section. Discuss to what extent your results responded to the research question you identified at the beginning and how this work could be improved in the future.
+In this study, we examined the impact of lifestyle factors such as smoking, physical activity, diet and alcohol consumption on the development and progression of heart disease. Our analysis of the UCI Heart Disease Dataset gave us valuable insights into the relationship between these factors and their influence on heart disease.
+While our study provides valuable informations, it is important to acknowledge its limitations. The analysis was based on the UCI Heart Disease Dataset, which may have inherent biases and limitations. In addition, our study focused on a specific set of lifestyle factors, and other variables such as genetics, socioeconomic status and stress were not included. Future research should aim to address these gaps and adopt a more comprehensive approach to explore the multifaceted nature of heart disease.
+In conclusion, the findings support the importance of smoking cessation, regular physical activity, a healthy diet and moderate alcohol consumption in reducing the risk of heart disease. These findings can inform public health initiatives, policy decisions and individualised approaches to cardiovascular health management. Further research and collaborative efforts are needed to improve our understanding and develop targeted interventions to effectively combat cardiovascular heart disease.
+
 
 
 \newpage
